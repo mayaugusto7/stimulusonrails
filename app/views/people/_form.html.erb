@@ -1,0 +1,55 @@
+<%= form_with(model: person, remote: true) do |form| %>
+  <% if person.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <h2><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+        <% person.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+
+    </div>
+  <% end %>
+
+  <div data-controller="people">
+    <div class="field">
+      <%= form.label :name, style: "display: block" %>
+      <%= form.text_field :name, id: :person_name, data: {
+        target: 'people.name', action: 'change -> people#toUpper'
+      } %>
+    </div>
+
+    <div class="field">
+      <%= form.label :username, style: "display: block" %>
+      <%= form.text_field :username, id: :person_username, data: {
+        target: 'people.username'
+      } %>
+      <button data-action="click->people#usernameSuggestion">
+        USERNAME SUGGESTION
+      </button>
+    </div>
+
+    <div class="field">
+      <%= form.label :document, style: "display: block" %>
+      <%= form.text_field :document, id: :person_document, data: {
+        target: 'people.document', action: 'paste->people#paste'
+      } %>
+    </div>
+
+    <div class="field">
+      <%= form.label :favcolor, style: "display: block" %>
+      <%= form.text_field :favcolor, id: :person_favcolor, data: {
+        target: 'people.favcolor', action: 'blur->people#color'
+      } %>
+    </div>
+
+    <br>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+
+  </div>
+<% end %>
+

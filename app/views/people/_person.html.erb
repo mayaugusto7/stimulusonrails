@@ -1,0 +1,9 @@
+<tr id="<%= dom_id person %>">
+  <td><%= person.name %></td>
+  <td><%= person.username %></td>
+  <td><%= person.document %></td>
+  <td><%= person.favcolor %></td>
+</tr>
+<script type="module">
+  console.log($('#<%= dom_id person %> td'));
+</script>

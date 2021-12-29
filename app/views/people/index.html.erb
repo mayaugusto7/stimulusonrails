@@ -1,0 +1,25 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 id="title">Pessoas</h1>
+
+<table class="table table-striped table-dark">
+  <thead class="table-light">
+  <tr>
+    <th>Nome</th>
+    <th>Username</th>
+    <th>Documento</th>
+    <th>Cor Favorita</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @people.each do |person_row| %>
+    <%= render person_row %>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New person", new_person_path %>
+
+<script type="module">
+    $('#title').css('color', 'red');
+</script>
